@@ -39,19 +39,19 @@ export default async function getListings(
     if (roomCount) {
       query.roomCount = {
         gte: +roomCount
-      }
+      };
     }
 
     if (guestCount) {
       query.guestCount = {
         gte: +guestCount
-      }
+      };
     }
 
     if (bathroomeCount) {
       query.bathroomCount = {
         gte: +bathroomeCount
-      }
+      };
     }
 
     if (locationValue) {
@@ -74,7 +74,7 @@ export default async function getListings(
             ]
           }
         }
-      }
+      };
     }
 
     const listings = await prisma.listing.findMany({
@@ -87,6 +87,7 @@ export default async function getListings(
     const safeListings = listings.map((listing) => ({
       ...listing,
       createdAt: listing.createdAt.toISOString(),
+      imageSrc: Array.isArray(listing.imageSrc) ? listing.imageSrc : [listing.imageSrc],
     }));
 
     return safeListings;
