@@ -68,7 +68,7 @@ export async function POST(request: Request) {
       subject: 'New Reservation',
       html: `
         <p>You have a new reservation for your listing "${listingAndReservation.title}"!</p>
-        <p>Reservation details:</p>
+        <p>Reservation details of you:</p>
         <ul>
           <li>Start Date: ${startDate}</li>
           <li>End Date: ${endDate}</li>
