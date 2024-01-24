@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const resendToUser = new Resend('re_NUpAMvUb_8ydSZaxQPfLwWrLuBRaiXDSc');
     await resendToUser.emails.send({
       from: 'Hotelgasht@hotelgasht.com',
-      to: currentUser.email,
+      to: currentUser.email || 'Alirezajj118@gmail.com',
       subject: 'Reservation Confirmation',
       html: `
         <p>Your reservation for the listing "${listingAndReservation.title}" has been confirmed!</p>
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
     const resendToOwner = new Resend('re_NUpAMvUb_8ydSZaxQPfLwWrLuBRaiXDSc'); // Replace with the actual API key for the owner
     await resendToOwner.emails.send({
       from: 'Hotelgasht@hotelgasht.com',
-      to: ownerEmail,
+      to: ownerEmail || 'alirezajj118@gmail.com',
       subject: 'New Reservation',
       html: `
         <p>You have a new reservation for your listing "${listingAndReservation.title}"!</p>
