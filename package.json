@@ -31,6 +31,7 @@
     "react-select": "^5.8.0",
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
+    "resend": "^3.1.0",
     "slick-carousel": "^1.8.1",
     "world-countries": "^5.0.0",
     "zustand": "^4.4.7"
