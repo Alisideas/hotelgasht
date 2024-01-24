@@ -55,7 +55,7 @@ export async function POST(request: Request) {
           <li>End Date: ${endDate}</li>
           <li>Total Price: ${totalPrice}</li>
         </ul>
-        <p>We look forward to hosting you!</p>
+        <p>We look forward to hosting you in hotel gasht!</p>
       `,
     });
 
