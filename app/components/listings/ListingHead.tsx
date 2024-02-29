@@ -39,39 +39,30 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         title={title}
         subtitle={`${location?.region}, ${location?.label}`}
       />
-      <div
-        className="
-          w-full
-          grid
-          grid-cols-2
-          gap-4
-          overflow-hidden
-        "
-      >
-        {imageSrc.map((imageUrl, index) => (
-          <img
-            key={index}
-            src={imageUrl}
-            className="
-              w-full
-              h-48
-              object-cover
-              rounded-md
-              cursor-pointer   // Add cursor pointer for clickable effect
-            "
-            alt={`Image ${index + 1}`}
-            onClick={() => openImageModal(imageUrl)}
-          />
-        ))}
+      <div className="relative w-full grid grid-cols-2 gap-4 overflow-hidden">
+        {/* First Image (half width) */}
+        <img
+          src={imageSrc[0]}
+          className="w-full h-52 object-cover rounded-md cursor-pointer"
+          alt="Image 1"
+          onClick={() => openImageModal(imageSrc[0])}
+        />
+
+        {/* Rest of the Images (half width) */}
+        <div className="flex-row grid grid-cols-2 gap-2">
+          {imageSrc.slice(1).map((imageUrl, index) => (
+            <img
+              key={index + 1}
+              src={imageUrl}
+              className="w-full h-24 object-cover rounded-md cursor-pointer"
+              alt={`Image ${index + 2}`}
+              onClick={() => openImageModal(imageUrl)}
+            />
+          ))}
+        </div>
       </div>
 
-      <div
-        className="
-          absolute
-          top-5
-          right-5
-        "
-      >
+      <div className="absolute top-5 right-5">
         <HeartButton listingId={id} currentUser={currentUser} />
       </div>
 

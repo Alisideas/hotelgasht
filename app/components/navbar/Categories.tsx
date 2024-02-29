@@ -19,6 +19,7 @@ import { MdOutlineVilla } from 'react-icons/md';
 
 import CategoryBox from "../CategoryBox";
 import Container from '../Container';
+import FilterButton from '../FilterButton';
 
 
 export const categories = [
@@ -129,7 +130,9 @@ const Categories = () => {
             selected={category === item.label}
           />
         ))}
+        <FilterButton />
       </div>
+      
     </Container>
   );
 }
