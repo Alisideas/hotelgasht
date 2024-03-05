@@ -32,9 +32,10 @@ enum STEPS {
   DESCRIPTION = 4,
   HOMEOPTION = 5,
   HOMEOPTIONTWO = 6,
+  TAXPRICE = 7,
   // HOMEOPTION3 = 7,
   // HOMEOPTION4 = 8,
-  PRICE = 7,
+  PRICE = 8,
 }
 
 const RentModal = () => {
@@ -58,6 +59,7 @@ const RentModal = () => {
       category: '',
       option: '',
       optionTwo: '',
+      taxprice: 0,
       // option3: '',
       // option4: '',
       location: null,
@@ -104,6 +106,8 @@ const RentModal = () => {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+
+    data.taxprice = parseInt(data.taxprice);
     if (step !== STEPS.PRICE) {
       return onNext();
     }
@@ -331,6 +335,26 @@ const RentModal = () => {
     
   }
   
+  if (step === STEPS.TAXPRICE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Now, set your tax price"
+          subtitle="How much is your tax per night?"
+        />
+        <Input
+          id="taxprice"
+          label="Tax Price"
+          formatPrice 
+          type="number" 
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    )
+  }
 
   if (step === STEPS.PRICE) {
     bodyContent = (

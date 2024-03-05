@@ -9,6 +9,7 @@ export interface IListingsParams {
   endDate?: string;
   locationValue?: string;
   category?: string;
+  taxprice?: number;
 }
 
 export default async function getListings(
@@ -24,9 +25,16 @@ export default async function getListings(
       startDate,
       endDate,
       category,
+      taxprice
     } = params;
 
     let query: any = {};
+
+    if (taxprice) {
+      query.tax = {
+        gte: +taxprice
+      }
+    }
 
     if (userId) {
       query.userId = userId;

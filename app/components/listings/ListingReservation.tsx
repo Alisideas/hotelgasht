@@ -73,7 +73,7 @@ const ListingReservation: React.FC<
         "
       >
         <div>
-          Total
+          Total + Tax
         </div>
         <div>
         ₺ {totalPrice}
