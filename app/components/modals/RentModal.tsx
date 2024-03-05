@@ -21,6 +21,8 @@ import { categories } from '../navbar/Categories';
 import ImageUpload from '../inputs/ImageUpload';
 import Input from '../inputs/Input';
 import Heading from '../Heading';
+import { homeOption } from '../navbar/HomeOptions';
+import HomeOptionBox from '../inputs/HomeOptionInput';
 
 enum STEPS {
   CATEGORY = 0,
@@ -28,7 +30,11 @@ enum STEPS {
   INFO = 2,
   IMAGES = 3,
   DESCRIPTION = 4,
-  PRICE = 5,
+  HOMEOPTION = 5,
+  HOMEOPTIONTWO = 6,
+  // HOMEOPTION3 = 7,
+  // HOMEOPTION4 = 8,
+  PRICE = 7,
 }
 
 const RentModal = () => {
@@ -50,6 +56,10 @@ const RentModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: '',
+      option: '',
+      optionTwo: '',
+      // option3: '',
+      // option4: '',
       location: null,
       guestCount: 1,
       roomCount: 1,
@@ -63,6 +73,10 @@ const RentModal = () => {
 
   const location = watch('location');
   const category = watch('category');
+  const option = watch('option');
+  const optionTwo = watch('optionTwo');
+  // const option3 = watch('option3');
+  // const option4 = watch('option4');
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomeCount = watch('bathroomeCount');
@@ -112,6 +126,7 @@ const RentModal = () => {
     })
   }
 
+  
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
       return 'Create'
@@ -248,6 +263,74 @@ const RentModal = () => {
       </div>
     )
   }
+
+  if (step === STEPS.HOMEOPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+      <Heading
+        title="select first option of your home?"
+        subtitle="Pick a option"
+      />
+      <div 
+        className="
+          grid 
+          grid-cols-1 
+          md:grid-cols-2 
+          gap-3
+          max-h-[50vh]
+          overflow-y-auto
+        "
+      >
+        {homeOption.map((item) => (
+          <div key={item.label} className="col-span-1">
+            <HomeOptionBox
+              onClick={(option) => 
+                setCustomValue('option', option)}
+              selected={option === item.label}
+              label={item.label}
+              icon={item.icon}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+    )
+    
+  }
+  if (step === STEPS.HOMEOPTIONTWO) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+      <Heading
+        title="Select second option of your home?"
+        subtitle="Pick another option"
+      />
+      <div 
+        className="
+          grid 
+          grid-cols-1 
+          md:grid-cols-2 
+          gap-3
+          max-h-[50vh]
+          overflow-y-auto
+        "
+      >
+        {homeOption.map((item) => (
+          <div key={item.label} className="col-span-1">
+            <HomeOptionBox
+              onClick={(optionTwo) => 
+                setCustomValue('optionTwo', optionTwo)}
+              selected={optionTwo === item.label}
+              label={item.label}
+              icon={item.icon}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+    )
+    
+  }
+  
 
   if (step === STEPS.PRICE) {
     bodyContent = (

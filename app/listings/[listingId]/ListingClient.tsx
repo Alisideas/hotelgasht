@@ -15,6 +15,7 @@ import { categories } from "@/app/components/navbar/Categories";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
+import { homeOption } from "@/app/components/navbar/HomeOptions";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -57,6 +58,17 @@ const ListingClient: React.FC<ListingClientProps> = ({
      return categories.find((items) => 
       items.label === listing.category);
   }, [listing.category]);
+
+
+  const option = useMemo(() => {
+    return homeOption.find((items) => 
+     items.label === listing.option);
+ }, [listing.option]);
+
+ const optionTwo = useMemo(() => {
+  return homeOption.find((items) => 
+   items.label === listing.optionTwo);
+}, [listing.optionTwo]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
@@ -139,6 +151,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
             <ListingInfo
               user={listing.user}
               category={category}
+              option={option}
+              optionTwo={optionTwo}
               description={listing.description}
               roomCount={listing.roomCount}
               guestCount={listing.guestCount}

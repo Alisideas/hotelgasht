@@ -132,7 +132,6 @@ const Categories = () => {
         ))}
         <FilterButton />
       </div>
-      
     </Container>
   );
 }
