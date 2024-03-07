@@ -22,7 +22,7 @@ const ListingFavoriteGuest: React.FC<ListingFavoriteGuestProps> = ({ isActive })
                             width="150"
                             alt="Favorite"
                         />
-                        <div className="text-s ml-7 font-bold">One of the most loved homes on Hotelgasht, according to guests</div>
+                        <div className="text-xs ml-7 md:text-s sm:text-s lg:text-sm xl:text-sm  font-bold">One of the most loved homes on Hotelgasht, according to guests</div>
                     </div>
                     <div className='mr-8 text-lg font-semibold'>
                         Rate

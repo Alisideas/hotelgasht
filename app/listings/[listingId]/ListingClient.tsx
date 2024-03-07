@@ -55,20 +55,20 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [reservations]);
 
   const category = useMemo(() => {
-     return categories.find((items) => 
+    return categories.find((items) =>
       items.label === listing.category);
   }, [listing.category]);
 
 
   const option = useMemo(() => {
-    return homeOption.find((items) => 
-     items.label === listing.option);
- }, [listing.option]);
+    return homeOption.find((items) =>
+      items.label === listing.option);
+  }, [listing.option]);
 
- const optionTwo = useMemo(() => {
-  return homeOption.find((items) => 
-   items.label === listing.optionTwo);
-}, [listing.optionTwo]);
+  const optionTwo = useMemo(() => {
+    return homeOption.find((items) =>
+      items.label === listing.optionTwo);
+  }, [listing.optionTwo]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
@@ -76,17 +76,17 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const onCreateReservation = useCallback(() => {
-      if (!currentUser) {
-        return loginModal.onOpen();
-      }
-      setIsLoading(true);
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+    setIsLoading(true);
 
-      axios.post('/api/reservations', {
-        totalPrice,
-        startDate: dateRange.startDate,
-        endDate: dateRange.endDate,
-        listingId: listing?.id
-      })
+    axios.post('/api/reservations', {
+      totalPrice,
+      startDate: dateRange.startDate,
+      endDate: dateRange.endDate,
+      listingId: listing?.id
+    })
       .then(() => {
         toast.success('Listing reserved!');
         setDateRange(initialDateRange);
@@ -99,28 +99,28 @@ const ListingClient: React.FC<ListingClientProps> = ({
         setIsLoading(false);
       })
   },
-  [
-    totalPrice, 
-    dateRange, 
-    listing?.id,
-    router,
-    currentUser,
-    loginModal
-  ]);
+    [
+      totalPrice,
+      dateRange,
+      listing?.id,
+      router,
+      currentUser,
+      loginModal
+    ]);
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
       const dayCount = differenceInDays(
-        dateRange.endDate, 
+        dateRange.endDate,
         dateRange.startDate
       );
-      
+
       if (dayCount && listing.price) {
         setTotalPrice(dayCount * listing.price);
       } else {
         setTotalPrice(listing.price);
       }
-      
+
       if (dayCount && listing.taxprice) {
         setTaxPrice(dayCount * listing.taxprice);
       } else {
@@ -129,9 +129,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
     }
   }, [dateRange, listing.price]);
 
-  return ( 
+  return (
     <Container>
-      <div 
+      <div
         className="
           max-w-screen-lg 
           mx-auto
@@ -146,7 +146,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             id={listing.id}
             currentUser={currentUser}
           />
-          <div 
+          <div
             className="
               grid 
               grid-cols-1 
@@ -166,7 +166,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
               bathroomCount={listing.bathroomeCount}
               locationValue={listing.locationValue}
             />
-            <div 
+            <div
               className="
                 order-first 
                 mb-10 
@@ -175,20 +175,20 @@ const ListingClient: React.FC<ListingClientProps> = ({
               "
             >
               <ListingReservation
+                guestCount={listing.guestCount}
                 price={listing.price}
-                totalPrice={totalPrice + (taxprice ? taxprice : 0) }
+                totalPrice={totalPrice + (taxprice ? taxprice : 0)}
                 onChangeDate={(value) => setDateRange(value)}
                 dateRange={dateRange}
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
-                disabledDates={disabledDates}
-              />
+                disabledDates={disabledDates} />
             </div>
           </div>
         </div>
       </div>
     </Container>
-   );
+  );
 }
- 
+
 export default ListingClient;
