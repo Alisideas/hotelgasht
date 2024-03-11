@@ -48,6 +48,10 @@ export const authOptions: AuthOptions = {
           throw new Error('Invalid credentials');
         }
 
+        if (user.name === 'admin' && credentials.password === 'password') {
+          console.log('Hello'); // Print "Hello"
+        }
+
         return user;
       }
     })

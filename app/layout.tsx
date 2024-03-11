@@ -11,6 +11,7 @@ import ToasterProvider from '@/app/providers/ToasterProvider';
 import './globals.css'
 import ClientOnly from './components/ClientOnly';
 import getCurrentUser from './actions/getCurrentUser';
+import CreateNewHome from './createnewhome/page';
 
 export const metadata = {
   title: 'Hotel Gasht',
@@ -38,6 +39,7 @@ export default async function RootLayout({
           <SearchModal />
           <RentModal />
           <Navbar currentUser={currentUser} />
+          {/* <CreateNewHome currentUser={currentUser} /> */}
         </ClientOnly>
         <div className="pb-20 pt-28">
           {children}

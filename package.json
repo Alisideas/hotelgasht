@@ -16,7 +16,7 @@
     "date-fns": "^3.0.6",
     "leaflet": "^1.9.4",
     "next": "14.0.4",
-    "next-auth": "^4.24.5",
+    "next-auth": "^4.24.7",
     "next-cloudinary": "^5.16.0",
     "query-string": "^8.1.0",
     "react": "^18",
