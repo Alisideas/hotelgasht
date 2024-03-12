@@ -60,6 +60,23 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return data.price;
   }, [reservation, data.price]);
 
+  const getRandomDate = () => {
+    const randomOffset = Math.floor(Math.random() * 9); // Random number between 0 and 6
+    const today = new Date();
+    today.setDate(today.getDate() + randomOffset);
+    return today;
+  };
+  const getRandomDate2 = () => {
+    let randomOffset = Math.floor(Math.random() * 9); // Random number between 0 and 6
+    const firstDate = getRandomDate();
+    const secondDate = new Date(firstDate.getTime());
+    while (secondDate < firstDate) {
+      randomOffset = Math.floor(Math.random() * 9); // Generate a new random offset until the second date is greater than the first
+      secondDate.setDate(firstDate.getDate() + randomOffset);
+    }
+    return secondDate;
+  };
+
   const reservationDate = useMemo(() => {
     if (!reservation) {
       return null;
@@ -116,12 +133,18 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <div className="ml-auto"><Rating initialValue={0} /></div>
         </div>
         <div className="font-light text-neutral-500">
+        <div>
+            {reservation?.startDate && reservation?.endDate ? reservationDate  : format(getRandomDate(), 'MMM d') + format(getRandomDate2(), ' - d') }
+          </div>
+
+
           {reservationDate || data.category}
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">
             ₺ {price}
           </div>
+
           {!reservation && (
             <div className="font-light">night</div>
           )}
