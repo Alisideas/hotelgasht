@@ -41,6 +41,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
 
   return (
     <Container>
+      <div className="mt-10">
       <Heading
         title="Reservations"
         subtitle="Bookings on your properties"
@@ -70,6 +71,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
             currentUser={currentUser}
           />
         ))}
+      </div>
       </div>
     </Container>
    );

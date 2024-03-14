@@ -33,30 +33,35 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     setSelectedImage(null);
   };
 
+  const handleImageClick = (
+    imageUrl: string,
+    event: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+    openImageModal(imageUrl);
+  };
+
   return (
     <>
       <Heading
         title={title}
         subtitle={`${location?.region}, ${location?.label}`}
       />
-      <div className="relative w-full grid grid-cols-2 gap-4 overflow-hidden">
-        {/* First Image (half width) */}
+      <div className="relative w-full grid grid-cols-2 gap-1 overflow-hidden">
         <img
           src={imageSrc[0]}
-          className="w-full h-52 object-cover rounded-md cursor-pointer"
+          className="w-full h-[504px] object-cover rounded-md rounded-r-none cursor-pointer hover:opacity-80"
           alt="Image 1"
           onClick={() => openImageModal(imageSrc[0])}
         />
-
-        {/* Rest of the Images (half width) */}
-        <div className="flex-row grid grid-cols-2 gap-2">
+        <div className="flex-row grid grid-cols-2 gap-1">
           {imageSrc.slice(1).map((imageUrl, index) => (
             <img
               key={index + 1}
               src={imageUrl}
-              className="w-full h-24 object-cover rounded-md cursor-pointer"
-              alt={`Image ${index + 2}`}
-              onClick={() => openImageModal(imageUrl)}
+              className="w-full h-[250px] object-cover rounded-md rounded-l-none cursor-pointer hover:opacity-80"
+              alt={`Image ${index + 2 < 5}`}
+              onClick={(event) => handleImageClick(imageUrl, event)}
             />
           ))}
         </div>
@@ -65,20 +70,29 @@ const ListingHead: React.FC<ListingHeadProps> = ({
       <div className="absolute top-5 right-5">
         <HeartButton listingId={id} currentUser={currentUser} />
       </div>
-
-      {/* Image Modal */}
       <Modal
+        className="modal"
         isOpen={!!selectedImage}
         onRequestClose={closeImageModal}
         contentLabel="Selected Image"
       >
-        {selectedImage && (
-          <img
-            src={selectedImage}
-            alt="Selected Image"
-            className="w-full h-full object-contain"
-          />
-        )}
+        <button onClick={closeImageModal} className="absolute top-5 right-5 mt-10 rounded-full bg-gray-300 p-2 hover:bg-gray-400 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-600" viewBox="0 0 21 21" fill="currentColor">
+            <path fillRule="evenodd" d="M13.414 10l4.293-4.293a1 1 0 0 0-1.414-1.414L12 8.586l-4.293-4.293a1 1 0 1 0-1.414 1.414L10.586 10l-4.293 4.293a1 1 0 0 0 1.414 1.414L12 11.414l4.293 4.293a1 1 0 0 0 1.414-1.414L13.414 10z" clipRule="evenodd" />
+          </svg>
+        </button>
+
+        <div className="gallery w-full items-center justify-center flex flex-col">
+          {imageSrc.map((imageUrl, index) => (
+            <img
+              key={index}
+              src={imageUrl}
+              alt={`Gallery Image ${index + 1}`}
+              className="gallery-image w-1/2 h-1/2 object-cover"
+              onClick={(event) => handleImageClick(imageUrl, event)}
+            />
+          ))}
+        </div>
       </Modal>
     </>
   );
