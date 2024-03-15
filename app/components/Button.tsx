@@ -40,8 +40,8 @@ const Button: React.FC<ButtonProps> = ({
         ${small ? 'py-1' : 'py-3'}
         ${small ? 'font-light' : 'font-semibold'}
         ${small ? 'border-[1px]' : 'border-2'}
-        ${approved ? 'bg-green-500' : 'bg-rose-500'}
-        ${approved ? 'border-green-500' : 'bg-rose-500'}
+        ${approved ? 'bg-yellow-500' : 'bg-rose-500'}
+        ${approved ? 'border-yellow-500' : 'bg-rose-500'}
         ${approved ? 'text-sm' : 'text-md'}
         ${approved ? 'py-1' : 'py-3'}
         ${approved ? 'font-light' : 'font-semibold'}

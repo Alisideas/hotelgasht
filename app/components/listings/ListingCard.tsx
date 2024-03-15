@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { format } from 'date-fns';
-
+import { TbClock } from 'react-icons/tb';
 import useCountries from "@/app/hooks/useCountries";
 import {
   SafeListing,
@@ -16,6 +16,7 @@ import HeartButton from "../HeartButton";
 import Button from "../Button";
 import ClientOnly from "../ClientOnly";
 import Rating from "../Rating";
+import Heading from "../Heading";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -94,6 +95,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
       className="col-span-1 cursor-pointer group"
     >
       <div className="flex flex-col gap-2 w-full">
+        {onAction && actionLabel == "Cancel reservation" && (
+          <div className="flex flex-row items-center gap-1 justify-between">
+            <Heading title={"Not approved"} subtitle="Please wait for host to approve reservation" />
+            <TbClock size={45} />
+          </div>
+        )}
         <div
           className="
             aspect-square 
@@ -133,8 +140,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <div className="ml-auto"><Rating initialValue={0} /></div>
         </div>
         <div className="font-light text-neutral-500">
-        <div>
-            {reservation?.startDate && reservation?.endDate ? reservationDate  : format(getRandomDate(), 'MMM d') + format(getRandomDate2(), ' - d') }
+          <div>
+            {reservation?.startDate && reservation?.endDate ? reservationDate : format(getRandomDate(), 'MMM d') + format(getRandomDate2(), ' - d')}
           </div>
 
 
@@ -149,14 +156,15 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <div className="font-light">night</div>
           )}
         </div>
-        {onAction && actionLabel && (
+        {onAction && actionLabel == 'Cancel guest reservation' && (
           <Button
             disabled={disabled}
             approved
             label={'Approve'}
-            onClick={()=>{}}
+            onClick={() => { }}
           />
         )}
+
         {onAction && actionLabel && (
           <Button
             disabled={disabled}
@@ -165,6 +173,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             onClick={handleCancel}
           />
         )}
+
       </div>
     </div>
   );
