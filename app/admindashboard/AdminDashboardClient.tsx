@@ -11,11 +11,11 @@ import useRegisterModal from "../hooks/useRegisterModal";
 import useRentModal from "../hooks/useRentModal";
 import { useCallback, useState } from "react";
 
-interface CreateNewHomeClientProps {
+interface AdminDashboardCllientProps {
   currentUser?: SafeUser | null;
 }
 
-const CreateNewHomeClient: React.FC<CreateNewHomeClientProps> = ({
+const AdminDashboardCllient: React.FC<AdminDashboardCllientProps> = ({
   currentUser,
 }) => {
 
@@ -58,4 +58,4 @@ const CreateNewHomeClient: React.FC<CreateNewHomeClientProps> = ({
   );
 };
 
-export default CreateNewHomeClient;
+export default AdminDashboardCllient;

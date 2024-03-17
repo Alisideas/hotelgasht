@@ -11,7 +11,7 @@ import ToasterProvider from '@/app/providers/ToasterProvider';
 import './globals.css'
 import ClientOnly from './components/ClientOnly';
 import getCurrentUser from './actions/getCurrentUser';
-import CreateNewHome from './createnewhome/page';
+import CreateNewHome from './admindashboard/page';
 
 export const metadata = {
   title: 'Hotel Gasht',

@@ -1,10 +1,10 @@
 import ClientOnly from "@/app/components/ClientOnly";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import CreateNewHomeClient from "./CreateNewHomeClient";
 import prisma from "@/app/libs/prismadb";
 import EmptyState from "../components/EmptyState";
+import AdminDashboardCllient from "./AdminDashboardClient";
 
-const CreateNewHome = async () => {
+const AdminDashboard = async () => {
   // Fetch the user with the email "admin@admin.com"
   const user = await prisma.user.findUnique({
     where: {
@@ -22,7 +22,7 @@ const CreateNewHome = async () => {
   return (
     <ClientOnly>
       {isAdminUser ? (
-        <CreateNewHomeClient currentUser={currentUser} />
+        <AdminDashboardCllient currentUser={currentUser} />
       ) : (
         <EmptyState 
         title="You are not Admin"
@@ -33,4 +33,4 @@ const CreateNewHome = async () => {
   );
 }
 
-export default CreateNewHome;
+export default AdminDashboard;

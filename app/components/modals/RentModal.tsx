@@ -340,11 +340,11 @@ const RentModal = () => {
       <div className="flex flex-col gap-8">
         <Heading
           title="Now, set your tax price"
-          subtitle="How much is your tax per night?"
+          subtitle="How much percent is your tax per night?"
         />
         <Input
           id="taxprice"
-          label="Tax Price"
+          label="Tax Price (%)"
           formatPrice 
           type="number" 
           disabled={isLoading}

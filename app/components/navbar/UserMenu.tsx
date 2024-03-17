@@ -42,8 +42,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
-        {/* <div
-          onClick={onRent}
+        {currentUser?.email === "admin@admin.com" && ( <div
+          onClick={() => router.push("/admindashboard")}
           className="
             hidden
             md:block
@@ -57,8 +57,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             cursor-pointer
           "
         >
-          Hotel gasht your home
-        </div> */}
+          Admin dashboard
+        </div>)}
         <div
           onClick={toggleOpen}
           className="
@@ -126,6 +126,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 />
                 {/* <MenuItem label="Hotel gasht your home" onClick={rentModal.onOpen} /> */}
                 <hr />
+                {currentUser.email === "admin@admin.com" && (
+                  <MenuItem label="Admin Panel" onClick={() => router.push("/admindashboard")} />
+                )}
                 <MenuItem label="Logout" onClick={() => signOut()} />
               </>
             ) : (

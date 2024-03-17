@@ -177,7 +177,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
               <ListingReservation
                 guestCount={listing.guestCount}
                 price={listing.price}
-                totalPrice={totalPrice + (taxprice ? taxprice : 0)}
+                totalPrice={totalPrice + (totalPrice * (taxprice ? taxprice : 0) / 100)}
                 onChangeDate={(value) => setDateRange(value)}
                 dateRange={dateRange}
                 onSubmit={onCreateReservation}

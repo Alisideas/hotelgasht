@@ -55,12 +55,12 @@ const ListingHead: React.FC<ListingHeadProps> = ({
           onClick={() => openImageModal(imageSrc[0])}
         />
         <div className="flex-row grid grid-cols-2 gap-1">
-          {imageSrc.slice(1).map((imageUrl, index) => (
+          {imageSrc.slice(1, 5).map((imageUrl, index) => (
             <img
               key={index + 1}
               src={imageUrl}
               className="w-full h-[250px] object-cover rounded-md rounded-l-none cursor-pointer hover:opacity-80"
-              alt={`Image ${index + 2 < 5}`}
+              alt={`Image ${index + 2}`}
               onClick={(event) => handleImageClick(imageUrl, event)}
             />
           ))}

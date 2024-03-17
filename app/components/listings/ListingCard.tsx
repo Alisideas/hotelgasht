@@ -149,7 +149,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">
-            ₺ {price}
+            $ {price}
           </div>
 
           {!reservation && (
