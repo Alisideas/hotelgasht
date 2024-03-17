@@ -88,7 +88,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
               key={index}
               src={imageUrl}
               alt={`Gallery Image ${index + 1}`}
-              className="gallery-image w-1/2 h-1/2 object-cover"
+              className="gallery-image w-1/2 h-1/2 object-cover mt-2"
               onClick={(event) => handleImageClick(imageUrl, event)}
             />
           ))}

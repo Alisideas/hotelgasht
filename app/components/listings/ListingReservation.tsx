@@ -25,9 +25,8 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   disabled,
   disabledDates
 }) => {
-  const [numberOfGuests, setNumberOfGuests] = useState<number>(guestCount);
+  const [numberOfGuests, setNumberOfGuests] = useState<number>(1);
 
-  // Calculate the total price including the $2 increase per guest
   const calculateTotalPrice = () => {
     if (numberOfGuests > guestCount) {
       return totalPrice + (totalPrice / guestCount) * (numberOfGuests - guestCount);

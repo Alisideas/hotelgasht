@@ -26,8 +26,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
       onUpload={handleUpload} 
       uploadPreset={uploadPreset}
       options={{
-        // Allow uploading multiple files
-        maxFiles: 5  // You can adjust this based on your requirements
+        cropping: true,
+        maxFiles: 20
       }}
     >
       {({ open }) => (

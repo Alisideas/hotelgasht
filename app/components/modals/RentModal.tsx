@@ -345,7 +345,6 @@ const RentModal = () => {
         <Input
           id="taxprice"
           label="Tax Price (%)"
-          formatPrice 
           type="number" 
           disabled={isLoading}
           register={register}

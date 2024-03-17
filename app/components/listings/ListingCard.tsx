@@ -134,24 +134,27 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         </div>
         <div className="flex flex-row items-center gap-2 w-full">
+
           <div className="font-semibold text-lg">
             {location?.region}, {location?.label}
           </div>
-          <div className="ml-auto"><Rating initialValue={0} /></div>
+          <div className="ml-auto"><Rating initialValue={0} />
+          </div>
         </div>
+        <div className="w-full mt-0">
+          {data.title}
+        </div>
+
         <div className="font-light text-neutral-500">
           <div>
             {reservation?.startDate && reservation?.endDate ? reservationDate : format(getRandomDate(), 'MMM d') + format(getRandomDate2(), ' - d')}
           </div>
-
-
           {reservationDate || data.category}
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">
             $ {price}
           </div>
-
           {!reservation && (
             <div className="font-light">night</div>
           )}
