@@ -16,6 +16,7 @@ import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import { homeOption } from "@/app/components/navbar/HomeOptions";
+import Heading from "@/app/components/Heading";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -130,6 +131,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [dateRange, listing.price]);
 
   return (
+    <div>
     <Container>
       <div
         className="
@@ -185,9 +187,60 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 disabledDates={disabledDates} />
             </div>
           </div>
+          <hr />
+          <Heading title="Things to know" />
+          <div className="flex flex-row justify-between gap-8">
+            <div>
+              <h3 className="p-3 text-lg font-bold">House Rules</h3>
+              <ul>
+                <li className="p-3">
+                  Check-in: 4:00 PM - 8:00 PM
+                </li >
+                <li className="p-3">
+                  Checkout before 10:00 AM
+                </li>
+                <li className="p-3">
+                  6 guests maximum
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="p-3 text-lg font-bold">Safety & property</h3>
+              <ul>
+                <li className="p-3">
+                Carbon monoxide alarm not reported
+                </li >
+                <li className="p-3">
+                Smoke alarm not reported
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="p-3 text-lg font-bold">Cancellation policy</h3>
+              <ul>
+                <li className="p-3">
+                This reservation is non-refundable.
+                </li >
+                <li className="p-3 w-[70%]">
+                Review the Host’s full cancellation policy
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
+    {/* <hr />
+    <div className="bg-[#f5f5f5] w-full h-full">
+      <div>
+        <h2>
+        Support
+        </h2>
+        we are here for your
+      </div>
+    </div> */}
+    </div>
+    
   );
 }
 

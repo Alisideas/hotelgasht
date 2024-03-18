@@ -13,6 +13,11 @@ import ListingOption from "./ListingOption";
 import Heading from "../Heading";
 import { homeOption } from "../navbar/HomeOptions";
 import HomeOptionBox from "../inputs/HomeOptionInput";
+import AvatarJoined from "../AvatarJoined";
+import Button from "../Button";
+import { MdVerifiedUser } from "react-icons/md";
+import { AiOutlineFileProtect } from "react-icons/ai";
+
 
 const Map = dynamic(() => import('../Map'), {
   ssr: false
@@ -129,32 +134,52 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       </div>
       <Heading title={"Special Offers"} />
       <div className="flex flex-wrap justify-start">
-      {option && (
-        <div key={option.label} className="w-1/3 p-2">
-         <HomeOptionBox
-         onClick={() => { }}
-         label={option.label}
-         icon={option.icon}
-       />
-       </div>
-        
-      )}
-      {optionTwo && (
-        <div key={optionTwo.label} className="w-1/3 p-2">
-         <HomeOptionBox
-         onClick={() => { }}
-         label={optionTwo.label}
-         icon={optionTwo.icon}
-       />
-       </div>
-        
-      )}
-      
-      
+        {option && (
+          <div key={option.label} className="w-1/3 p-2">
+            <HomeOptionBox
+              onClick={() => { }}
+              label={option.label}
+              icon={option.icon}
+            />
+          </div>
+
+        )}
+        {optionTwo && (
+          <div key={optionTwo.label} className="w-1/3 p-2">
+            <HomeOptionBox
+              onClick={() => { }}
+              label={optionTwo.label}
+              icon={optionTwo.icon}
+            />
+          </div>
+
+        )}
+      </div>
+      <Map center={coordinates} />
+      <div className="flex flex-row items-center gap-2">
+        <AvatarJoined src={user?.image} />
+        <Heading
+          title={`Hosted by ${user?.name}`}
+          subtitle={`Joined ${user?.createdAt?.toString()}`}
+        />
+      </div>
+      <div className="flex flex-row gap-2 items-center">
+        <div><MdVerifiedUser /></div>
+        <p>Identity verified</p>
       </div>
 
-      <hr />
-      <Map center={coordinates} />
+      <div className="w-28">
+        <Button
+          onClick={() => window.open(`https://wa.me/+905356558810`, "_blank")}
+          outline
+          small
+          label="Contact Host" 
+        />
+      </div>
+      <div className="flex flex-row gap-2 items-center">
+        <div><AiOutlineFileProtect size={24} /></div>
+        <p className="text-sm w-[60%]">To protect your payment, never transfer money or communicate outside of the Hotelgasht website or whatsapp.</p>
+      </div>
     </div>
   );
 }
