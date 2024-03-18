@@ -58,7 +58,8 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         onChange={handleNumberOfGuestsChange}
         value={numberOfGuests}
         title="Guests"
-        subtitle="How many extera guests are coming?"
+        subtitle="How many guests are coming?"
+        max={guestCount}
       />
       </div>
       <hr />

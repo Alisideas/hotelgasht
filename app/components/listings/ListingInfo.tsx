@@ -11,9 +11,11 @@ import ListingCategory from "./ListingCategory";
 import ListingFavoriteGuest from "./ListingFavoriteGuest";
 import ListingOption from "./ListingOption";
 import Heading from "../Heading";
+import { homeOption } from "../navbar/HomeOptions";
+import HomeOptionBox from "../inputs/HomeOptionInput";
 
-const Map = dynamic(() => import('../Map'), { 
-  ssr: false 
+const Map = dynamic(() => import('../Map'), {
+  ssr: false
 });
 
 interface ListingInfoProps {
@@ -55,10 +57,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
   const coordinates = getByValue(locationValue)?.latlng
 
-  return ( 
+  return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <div 
+        <div
           className="
             text-xl 
             font-semibold 
@@ -94,13 +96,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <ListingFavoriteGuest isActive={true} />
       {category && (
         <ListingCategory
-          icon={category.icon} 
+          icon={category.icon}
           label={category?.label}
-          description={category?.description} 
+          description={category?.description}
         />
-        
+
       )}
-      
+
       <hr />
       <div className="
       text-lg font-light text-neutral-500">
@@ -108,27 +110,53 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       </div>
       <hr />
       <Heading title={"What this place offers"} />
-      <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-wrap justify-center">
+        {homeOption.map((item, index) => {
+          if (index !== 1 && index !== 4 && index !== 5 && index !== 7 && index !== 11 && index !== 14) {
+            return (
+              <div key={item.label} className="w-1/3 p-2">
+                <HomeOptionBox
+                  onClick={() => { }}
+                  label={item.label}
+                  icon={item.icon}
+                />
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
+      </div>
+      <Heading title={"Special Offers"} />
+      <div className="flex flex-wrap justify-start">
       {option && (
-        <ListingOption
-          icon={option?.icon} 
-          label={option?.label}
-        />
+        <div key={option.label} className="w-1/3 p-2">
+         <HomeOptionBox
+         onClick={() => { }}
+         label={option.label}
+         icon={option.icon}
+       />
+       </div>
         
       )}
       {optionTwo && (
-        <ListingOption
-          icon={optionTwo?.icon} 
-          label={optionTwo?.label}
-        />
+        <div key={optionTwo.label} className="w-1/3 p-2">
+         <HomeOptionBox
+         onClick={() => { }}
+         label={optionTwo.label}
+         icon={optionTwo.icon}
+       />
+       </div>
         
       )}
-      </div>
       
+      
+      </div>
+
       <hr />
       <Map center={coordinates} />
     </div>
-   );
+  );
 }
- 
+
 export default ListingInfo;

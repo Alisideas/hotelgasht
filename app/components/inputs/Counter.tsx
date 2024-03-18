@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
@@ -8,6 +6,7 @@ interface CounterProps {
   subtitle: string;
   value: number;
   onChange: (value: number) => void;
+  max?: number; // Optional maximum value
 }
 
 const Counter: React.FC<CounterProps> = ({
@@ -15,17 +14,18 @@ const Counter: React.FC<CounterProps> = ({
   subtitle,
   value,
   onChange,
+  max = Infinity, // Default maximum value to Infinity if not provided
 }) => {
   const onAdd = useCallback(() => {
-    onChange(value + 1);
-  }, [onChange, value]);
+    if (value < max) {
+      onChange(value + 1);
+    }
+  }, [onChange, value, max]);
 
   const onReduce = useCallback(() => {
-    if (value === 1) {
-      return;
+    if (value > 1) {
+      onChange(value - 1);
     }
-
-    onChange(value - 1);
   }, [onChange, value]);
 
   return ( 

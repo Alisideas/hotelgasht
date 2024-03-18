@@ -28,6 +28,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
       options={{
         cropping: true,
         maxFiles: 20
+        
       }}
     >
       {({ open }) => (
