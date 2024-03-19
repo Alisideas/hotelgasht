@@ -43,10 +43,13 @@ const ListingHead: React.FC<ListingHeadProps> = ({
 
   return (
     <>
-      <Heading
-        title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
-      />
+      <div>
+        <Heading
+          title={title}
+          subtitle={`${location?.region}, ${location?.label}`}
+        />
+        {/* TODO: Add a share button in here */}
+      </div>
       <div className="relative w-full grid grid-cols-2 gap-1 overflow-hidden">
         <img
           src={imageSrc[0]}
