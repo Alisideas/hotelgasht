@@ -63,7 +63,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       <div className="p-4">
         <Button disabled={disabled} label="Reserve" onClick={onSubmit} />
         <div className='text-neutral-500 mt-4 items-center justify-center flex flex-row'>
-          You won't be charged yet
+          You won&apos;t be charged yet
         </div>
         <div className='flex flex-row items-center justify-between text-sm mt-5'>
           <div className='underline'>
