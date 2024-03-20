@@ -61,7 +61,8 @@ const ListingHead: React.FC<ListingHeadProps> = ({
             const shareData = {
               title: shareTitle,
               text: shareMessage,
-              url: shareImage,
+              url: window.location.href,
+              imageSrc: shareImage,
             };
 
             if (navigator.share) {
