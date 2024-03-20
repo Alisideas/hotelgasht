@@ -13,10 +13,11 @@ import ClientOnly from './components/ClientOnly';
 import getCurrentUser from './actions/getCurrentUser';
 import CreateNewHome from './admindashboard/page';
 
-// export const metadata = {
-//   title: 'Hotel Gasht',
-//   description: 'by Techwise',
-// }
+export const metadata = {
+  title: 'Hotel Gasht',
+  description: 'this is description',
+  image: 'https://res.cloudinary.com/dbm8ncouc/image/upload/v1710714622/u84dz94tw2njqtnoxgcv.jpg',
+}
 
 const font = Nunito({ 
   subsets: ['latin'], 
