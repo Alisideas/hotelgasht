@@ -52,20 +52,32 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         {/* TODO: Add a share button in here */}
         <button
           onClick={() => {
+            const shareTitle = title; // Title of the listing
+            const shareSubtitle = `${location?.region}, ${location?.label}`; // Subtitle of the listing
+            const shareImage = imageSrc[0]; // URL of the first image
+
+            const shareMessage = `${shareTitle}\n${shareSubtitle}`; // Constructing the message
+
             const shareData = {
-              title: document.title,
-              text: "Check out this listing!",
-              url: window.location.href,
+              title: shareTitle,
+              text: shareMessage,
+              url: shareImage,
             };
-            navigator.share(shareData);
+
+            if (navigator.share) {
+              navigator.share(shareData);
+            } else {
+              // Fallback for browsers that do not support Web Share API
+              // You can implement your custom share functionality here
+              alert("Sharing not supported on this device.");
+            }
           }}
           className="hover:bg-slate-100 text-black px-4 py-2 rounded-md"
         >
           <div className="flex flex-row items-center gap-2">
-          <FiShare />
-          <p className="underline text-sm">Share</p>
+            <FiShare />
+            <p className="underline text-sm">Share</p>
           </div>
-
         </button>
       </div>
       <div className="relative w-full grid grid-cols-2 gap-1</svg> overflow-hidden">
