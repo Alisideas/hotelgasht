@@ -4,6 +4,7 @@ import useCountries from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
 import Heading from "../Heading";
 import HeartButton from "../HeartButton";
+import { FiShare } from "react-icons/fi";
 
 interface ListingHeadProps {
   title: string;
@@ -43,14 +44,31 @@ const ListingHead: React.FC<ListingHeadProps> = ({
 
   return (
     <>
-      <div>
+      <div className="w-full flex flex-row justify-between items-center gap-8">
         <Heading
           title={title}
           subtitle={`${location?.region}, ${location?.label}`}
         />
         {/* TODO: Add a share button in here */}
+        <button
+          onClick={() => {
+            const shareData = {
+              title: document.title,
+              text: "Check out this listing!",
+              url: window.location.href,
+            };
+            navigator.share(shareData);
+          }}
+          className="hover:bg-slate-100 text-black px-4 py-2 rounded-md"
+        >
+          <div className="flex flex-row items-center gap-2">
+          <FiShare />
+          <p className="underline text-sm">Share</p>
+          </div>
+
+        </button>
       </div>
-      <div className="relative w-full grid grid-cols-2 gap-1 overflow-hidden">
+      <div className="relative w-full grid grid-cols-2 gap-1</svg> overflow-hidden">
         <img
           src={imageSrc[0]}
           className="w-full h-[504px] object-cover rounded-md rounded-r-none cursor-pointer hover:opacity-80"

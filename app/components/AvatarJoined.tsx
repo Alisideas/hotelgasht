@@ -6,7 +6,7 @@ interface AvatarJoinedProps {
   src: string | null | undefined;
 }
 
-const Avatar: React.FC<AvatarJoinedProps> = ({ src }) => {
+const AvatarJoined: React.FC<AvatarJoinedProps> = ({ src }) => {
   return ( 
     <Image 
       className="rounded-full" 
@@ -18,4 +18,4 @@ const Avatar: React.FC<AvatarJoinedProps> = ({ src }) => {
    );
 }
  
-export default Avatar;
+export default AvatarJoined;
