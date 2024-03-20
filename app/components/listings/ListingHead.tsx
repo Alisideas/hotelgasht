@@ -42,6 +42,12 @@ const ListingHead: React.FC<ListingHeadProps> = ({
     openImageModal(imageUrl);
   };
 
+  const metaData = {
+    imageSrc: imageSrc[0],
+    title: "Listing Head",
+    description: "Listing Head description",
+  };
+
   return (
     <>
       <div className="w-full flex flex-row justify-between items-center gap-8">
@@ -59,10 +65,10 @@ const ListingHead: React.FC<ListingHeadProps> = ({
             const shareMessage = `${shareTitle}\n${shareSubtitle}`; // Constructing the message
 
             const shareData = {
-              title: shareTitle,
-              text: shareMessage,
+              title: metaData.title,
+              text: metaData.description,
               url: window.location.href,
-              imageSrc: shareImage,
+              imageSrc: metaData.imageSrc,
             };
 
             if (navigator.share) {
