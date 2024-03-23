@@ -34,16 +34,7 @@ interface ListingInfoProps {
     label: string;
     description: string;
   } | undefined,
-  option: {
-    icon: IconType,
-    label: string;
-    description: string;
-  } | undefined,
-  optionTwo: {
-    icon: IconType,
-    label: string;
-    description: string;
-  } | undefined,
+  option: string[];
   locationValue: string;
 }
 
@@ -55,7 +46,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   bathroomCount,
   category,
   option,
-  optionTwo,
   locationValue,
 }) => {
   const { getByValue } = useCountries();
@@ -115,45 +105,23 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       </div>
       <hr />
       <Heading title={"What this place offers"} />
-      <div className="flex flex-wrap justify-center">
-        {homeOption.map((item, index) => {
-          if (index !== 1 && index !== 4 && index !== 5 && index !== 7 && index !== 11 && index !== 14) {
+
+      <div className="flex flex-wrap justify-start">
+        {option.map((item) => {
+          const matchedHomeOption = homeOption.find((homeOpt) => homeOpt.label === item);
+          if (matchedHomeOption) {
             return (
-              <div key={item.label} className="w-1/3 p-2">
-                <HomeOptionBox
-                  onClick={() => { }}
-                  label={item.label}
-                  icon={item.icon}
-                />
-              </div>
+              <ListingOption
+                key={item}
+                icon={matchedHomeOption.icon}
+                label={item}
+              />
             );
           } else {
             return null;
           }
         })}
-      </div>
-      <Heading title={"Special Offers"} />
-      <div className="flex flex-wrap justify-start">
-        {option && (
-          <div key={option.label} className="w-1/3 p-2">
-            <HomeOptionBox
-              onClick={() => { }}
-              label={option.label}
-              icon={option.icon}
-            />
-          </div>
 
-        )}
-        {optionTwo && (
-          <div key={optionTwo.label} className="w-1/3 p-2">
-            <HomeOptionBox
-              onClick={() => { }}
-              label={optionTwo.label}
-              icon={optionTwo.icon}
-            />
-          </div>
-
-        )}
       </div>
       <Map center={coordinates} />
       <div className="flex flex-row items-center gap-2">
@@ -173,7 +141,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           onClick={() => window.open(`https://wa.me/+905356558810`, "_blank")}
           outline
           small
-          label="Contact Host" 
+          label="Contact Host"
         />
       </div>
       <div className="flex flex-row gap-2 items-center">

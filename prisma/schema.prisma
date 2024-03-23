@@ -52,10 +52,7 @@ model Listing {
   imageSrc String[]
   createdAt DateTime @default(now())
   category  String
-  option String?
-  optionTwo String?
-  // option3 String?
-  // option4 String?
+  option String[]
   roomCount Int
   bathroomeCount Int
   guestCount Int

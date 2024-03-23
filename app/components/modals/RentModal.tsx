@@ -31,11 +31,8 @@ enum STEPS {
   IMAGES = 3,
   DESCRIPTION = 4,
   HOMEOPTION = 5,
-  HOMEOPTIONTWO = 6,
-  TAXPRICE = 7,
-  // HOMEOPTION3 = 7,
-  // HOMEOPTION4 = 8,
-  PRICE = 8,
+  TAXPRICE = 6,
+  PRICE = 7,
 }
 
 const RentModal = () => {
@@ -58,10 +55,7 @@ const RentModal = () => {
     defaultValues: {
       category: '',
       option: '',
-      optionTwo: '',
       taxprice: 0,
-      // option3: '',
-      // option4: '',
       location: null,
       guestCount: 1,
       roomCount: 1,
@@ -76,9 +70,6 @@ const RentModal = () => {
   const location = watch('location');
   const category = watch('category');
   const option = watch('option');
-  const optionTwo = watch('optionTwo');
-  // const option3 = watch('option3');
-  // const option4 = watch('option4');
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomeCount = watch('bathroomeCount');
@@ -106,6 +97,8 @@ const RentModal = () => {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+
+    data.option = [data.option];
 
     data.taxprice = parseInt(data.taxprice);
     if (step !== STEPS.PRICE) {
@@ -291,39 +284,6 @@ const RentModal = () => {
               onClick={(option) => 
                 setCustomValue('option', option)}
               selected={option === item.label}
-              label={item.label}
-              icon={item.icon}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-    )
-    
-  }
-  if (step === STEPS.HOMEOPTIONTWO) {
-    bodyContent = (
-      <div className="flex flex-col gap-8">
-      <Heading
-        title="Select second option of your home?"
-        subtitle="Pick another option"
-      />
-      <div 
-        className="
-          grid 
-          grid-cols-1 
-          md:grid-cols-2 
-          gap-3
-          max-h-[50vh]
-          overflow-y-auto
-        "
-      >
-        {homeOption.map((item) => (
-          <div key={item.label} className="col-span-1">
-            <HomeOptionBox
-              onClick={(optionTwo) => 
-                setCustomValue('optionTwo', optionTwo)}
-              selected={optionTwo === item.label}
               label={item.label}
               icon={item.icon}
             />

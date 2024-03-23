@@ -62,14 +62,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
 
   const option = useMemo(() => {
-    return homeOption.find((items) =>
+    return homeOption.find((items: any) =>
       items.label === listing.option);
   }, [listing.option]);
-
-  const optionTwo = useMemo(() => {
-    return homeOption.find((items) =>
-      items.label === listing.optionTwo);
-  }, [listing.optionTwo]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
@@ -121,11 +116,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         setTotalPrice(listing.price);
       }
 
-      // if (dayCount && listing.taxprice) {
-      //   setTaxPrice(dayCount * listing.taxprice);
-      // } else {
-      //   setTaxPrice(listing.taxprice);
-      // }
     }
   }, [dateRange, listing.price]);
 
@@ -159,8 +149,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             <ListingInfo
               user={listing.user}
               category={category}
-              option={option ? { ...option, description: '' } : undefined}
-              optionTwo={optionTwo ? { ...optionTwo, description: '' } : undefined}
+              option={listing.option}
               description={listing.description}
               roomCount={listing.roomCount}
               guestCount={listing.guestCount}
