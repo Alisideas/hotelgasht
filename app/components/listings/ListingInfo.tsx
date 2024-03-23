@@ -17,6 +17,9 @@ import AvatarJoined from "../AvatarJoined";
 import Button from "../Button";
 import { MdVerifiedUser } from "react-icons/md";
 import { AiOutlineFileProtect } from "react-icons/ai";
+import { CiLocationOn } from "react-icons/ci";
+import { LiaKeySolid } from "react-icons/lia";
+
 
 
 const Map = dynamic(() => import('../Map'), {
@@ -97,7 +100,29 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         />
 
       )}
-
+      <div>
+        {guestCount > 3 && (
+          <div>
+          <ListingCategory
+            icon={CiLocationOn}
+            label={"Great location"}
+            description={"95% of recent guests gave the location a 5-star rating."}
+          />
+          <div className="mt-6">
+          <ListingCategory
+        icon={LiaKeySolid}
+        label={"Great check-in experience"}
+        description={"95% of recent guests gave the check-in process a 5-star rating."}
+      />
+      </div>
+          </div>
+          
+        ) || <ListingCategory
+        icon={LiaKeySolid}
+        label={"Great check-in experience"}
+        description={"95% of recent guests gave the check-in process a 5-star rating."}
+      />}
+      </div>
       <hr />
       <div className="
       text-lg font-light text-neutral-500">
@@ -107,22 +132,22 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <Heading title={"What this place offers"} />
 
       <div className="flex flex-wrap justify-between">
-  {option.map((item) => {
-    const matchedHomeOption = homeOption.find((homeOpt) => homeOpt.label === item);
-    if (matchedHomeOption) {
-      return (
-        <div key={item} className="w-1/2 p-2">
-          <ListingOption
-            icon={matchedHomeOption.icon}
-            label={item}
-          />
-        </div>
-      );
-    } else {
-      return null;
-    }
-  })}
-</div>
+        {option.map((item) => {
+          const matchedHomeOption = homeOption.find((homeOpt) => homeOpt.label === item);
+          if (matchedHomeOption) {
+            return (
+              <div key={item} className="w-1/2 p-2">
+                <ListingOption
+                  icon={matchedHomeOption.icon}
+                  label={item}
+                />
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
+      </div>
 
       <Map center={coordinates} />
       <div className="flex flex-row items-center gap-2">
