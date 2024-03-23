@@ -6,7 +6,6 @@ import Heading from "../Heading";
 interface OptionViewProps {
   icon: IconType,
   label: string,
-
 }
 
 const OptionView: React.FC<OptionViewProps> = ({ 

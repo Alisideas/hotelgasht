@@ -111,9 +111,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     const matchedHomeOption = homeOption.find((homeOpt) => homeOpt.label === item);
     if (matchedHomeOption) {
       return (
-        <div className="w-1/2 p-2">
+        <div key={item} className="w-1/2 p-2">
           <ListingOption
-            key={item}
             icon={matchedHomeOption.icon}
             label={item}
           />
