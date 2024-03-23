@@ -87,7 +87,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
           </div>
         </button>
       </div>
-      <div className="relative w-full grid grid-cols-2 gap-1</svg> overflow-hidden">
+      <div className="relative w-full grid grid-cols-2 gap-1 overflow-hidden">
         <img
           src={imageSrc[0]}
           className="w-full h-[504px] object-cover rounded-md rounded-r-none cursor-pointer hover:opacity-80"

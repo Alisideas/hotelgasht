@@ -16,11 +16,11 @@ const OptionView: React.FC<OptionViewProps> = ({
   return ( 
     <div className="flex flex-col gap-6">
         
-      <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-row items-center gap-3">
         <Icon size={30} className="text-neutral-600" />
         <div className="flex flex-col">
             <div 
-              className="text-lg font-semibold"
+              className="text-md"
             >
               {label}
             </div>

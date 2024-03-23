@@ -78,15 +78,29 @@ const RentModal = () => {
   const Map = useMemo(() => dynamic(() => import('../Map'), { 
     ssr: false 
   }), [location]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]); // Manage selected options
 
 
   const setCustomValue = (id: string, value: any) => {
-    setValue(id, value, {
-      shouldDirty: true,
-      shouldTouch: true,
-      shouldValidate: true
-    })
-  }
+    if (id === 'option') {
+      // Handle multiple selections for 'option'
+      const updatedOptions = selectedOptions.includes(value)
+        ? selectedOptions.filter((option) => option !== value)
+        : [...selectedOptions, value];
+      setSelectedOptions(updatedOptions);
+      setValue(id, updatedOptions, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      });
+    } else {
+      setValue(id, value, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      });
+    }
+  };
 
   const onBack = () => {
     setStep((value) => value - 1);
@@ -98,7 +112,7 @@ const RentModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
 
-    data.option = [data.option];
+    data.option = data.option;
 
     data.taxprice = parseInt(data.taxprice);
     if (step !== STEPS.PRICE) {
@@ -279,16 +293,15 @@ const RentModal = () => {
         "
       >
         {homeOption.map((item) => (
-          <div key={item.label} className="col-span-1">
-            <HomeOptionBox
-              onClick={(option) => 
-                setCustomValue('option', option)}
-              selected={option === item.label}
-              label={item.label}
-              icon={item.icon}
-            />
-          </div>
-        ))}
+            <div key={item.label} className="col-span-1">
+              <HomeOptionBox
+                onClick={(option) => setCustomValue('option', option)}
+                selected={selectedOptions.includes(item.label)} // Check if option is selected
+                label={item.label}
+                icon={item.icon}
+              />
+            </div>
+          ))}
       </div>
     </div>
     )

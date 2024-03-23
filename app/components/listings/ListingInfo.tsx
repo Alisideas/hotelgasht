@@ -106,23 +106,25 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
       <Heading title={"What this place offers"} />
 
-      <div className="flex flex-wrap justify-start">
-        {option.map((item) => {
-          const matchedHomeOption = homeOption.find((homeOpt) => homeOpt.label === item);
-          if (matchedHomeOption) {
-            return (
-              <ListingOption
-                key={item}
-                icon={matchedHomeOption.icon}
-                label={item}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
+      <div className="flex flex-wrap justify-between">
+  {option.map((item) => {
+    const matchedHomeOption = homeOption.find((homeOpt) => homeOpt.label === item);
+    if (matchedHomeOption) {
+      return (
+        <div className="w-1/2 p-2">
+          <ListingOption
+            key={item}
+            icon={matchedHomeOption.icon}
+            label={item}
+          />
+        </div>
+      );
+    } else {
+      return null;
+    }
+  })}
+</div>
 
-      </div>
       <Map center={coordinates} />
       <div className="flex flex-row items-center gap-2">
         <AvatarJoined src={user?.image} />
