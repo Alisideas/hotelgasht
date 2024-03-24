@@ -29,8 +29,8 @@ export async function PUT(
     data: { isApproved: true }, // Update isApproved to true
   });
 
-  const resendToUser = new Resend('re_NUpAMvUb_8ydSZaxQPfLwWrLuBRaiXDSc');
-    await resendToUser.emails.send({
+  const approvedHotel = new Resend('re_NUpAMvUb_8ydSZaxQPfLwWrLuBRaiXDSc');
+    await approvedHotel.emails.send({
       from: 'Hotelgasht@hotelgasht.com',
       to: currentUser.email || 'Alirezajj118@gmail.com',
       subject: 'Reservation Confirmation',

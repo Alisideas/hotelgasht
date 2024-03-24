@@ -44,9 +44,10 @@ export async function POST(request: Request) {
     await resendToUser.emails.send({
       from: 'Hotelgasht@hotelgasht.com',
       to: currentUser.email || 'Alirezajj118@gmail.com',
-      subject: 'Reservation Confirmation',
+      subject: 'Your Reservation',
       html: `
-        <p>Your reservation for the listing "${listingAndReservation.title}" has been confirmed!</p>
+        <p>Your reservation for the listing "${listingAndReservation.title}" has been received wait for approval!</p>
+        <p>Please wait for approval</p>
         <p>Reservation details:</p>
         <ul>
           <li>Listing: ${listingAndReservation.title}</li>
