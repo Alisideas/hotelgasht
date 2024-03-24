@@ -67,7 +67,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [listing.option]);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
+  const [totalPrice, setTotalPrice] = useState(listing.price + (listing.taxprice ?? 0));
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const onCreateReservation = useCallback(() => {
@@ -190,7 +190,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                   Checkout before 10:00 AM
                 </li>
                 <li className="p-3">
-                  6 guests maximum
+                  {listing.guestCount} guests maximum
                 </li>
               </ul>
             </div>

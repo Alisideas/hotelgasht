@@ -11,7 +11,6 @@ export async function POST(request: Request) {
   if (!currentUser) {
     return NextResponse.error();
   }
-
   const body = await request.json();
 
   const { listingId, startDate, endDate, totalPrice } = body;

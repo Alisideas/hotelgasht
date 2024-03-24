@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { format } from 'date-fns';
-import { TbClock } from 'react-icons/tb';
+import { TbClock, TbCircleCheck } from 'react-icons/tb';
 import useCountries from "@/app/hooks/useCountries";
 import {
   SafeListing,
@@ -17,6 +17,7 @@ import Button from "../Button";
 import ClientOnly from "../ClientOnly";
 import Rating from "../Rating";
 import Heading from "../Heading";
+import axios from "axios";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -41,6 +42,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
   const { getByValue } = useCountries();
 
   const location = getByValue(data.locationValue);
+  const [isReservationApproved, setIsReservationApproved] = useState(reservation?.isApproved || false);
+
 
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,6 +55,23 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
       onAction?.(actionId)
     }, [disabled, onAction, actionId]);
+
+    const handleApprove = async () => {
+      try {
+        // Assuming you have the reservation ID stored in reservation.id
+        const reservationId = reservation?.id;
+    
+        // Send a request to update the reservation status
+        await axios.put(`/api/reservations/${reservationId}`, { isApproved: true });
+    
+        // Update the local state or trigger any necessary actions
+        setIsReservationApproved(true);
+      } catch (error) {
+        console.error('Error approving reservation:', error);
+        // Handle errors accordingly
+      }
+    };
+  
 
   const price = useMemo(() => {
     if (reservation) {
@@ -96,10 +116,21 @@ const ListingCard: React.FC<ListingCardProps> = ({
     >
       <div className="flex flex-col gap-2 w-full">
         {onAction && actionLabel == "Cancel reservation" && (
-          <div className="flex flex-row items-center gap-1 justify-between">
-            <Heading title={"Not approved"} subtitle="Please wait for host to approve reservation" />
-            <TbClock size={45} />
+          <div>
+            {reservation?.isApproved == false &&
+              (
+                <div className="flex flex-row items-center gap-1 justify-between">
+                  <Heading title={"Not approved"} subtitle="Please wait for host to approve reservation" />
+                  <TbClock size={45} />
+                </div>
+              ) ||
+              <div className="flex flex-row items-center gap-1 justify-between">
+                <Heading title={"Approved"} subtitle="Your reservation has been approved" />
+                <TbCircleCheck size={45} />
+              </div>
+            }
           </div>
+
         )}
         <div
           className="
@@ -164,7 +195,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             disabled={disabled}
             approved
             label={'Approve'}
-            onClick={() => { }}
+            onClick={handleApprove}
           />
         )}
 

@@ -103,25 +103,25 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <div>
         {guestCount > 3 && (
           <div>
-          <ListingCategory
-            icon={CiLocationOn}
-            label={"Great location"}
-            description={"95% of recent guests gave the location a 5-star rating."}
-          />
-          <div className="mt-6">
-          <ListingCategory
-        icon={LiaKeySolid}
-        label={"Great check-in experience"}
-        description={"95% of recent guests gave the check-in process a 5-star rating."}
-      />
-      </div>
+            <ListingCategory
+              icon={CiLocationOn}
+              label={"Great location"}
+              description={"95% of recent guests gave the location a 5-star rating."}
+            />
+            <div className="mt-6">
+              <ListingCategory
+                icon={LiaKeySolid}
+                label={"Great check-in experience"}
+                description={"95% of recent guests gave the check-in process a 5-star rating."}
+              />
+            </div>
           </div>
-          
+
         ) || <ListingCategory
-        icon={LiaKeySolid}
-        label={"Great check-in experience"}
-        description={"95% of recent guests gave the check-in process a 5-star rating."}
-      />}
+            icon={LiaKeySolid}
+            label={"Great check-in experience"}
+            description={"95% of recent guests gave the check-in process a 5-star rating."}
+          />}
       </div>
       <hr />
       <div className="
