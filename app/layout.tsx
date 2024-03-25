@@ -11,16 +11,15 @@ import ToasterProvider from '@/app/providers/ToasterProvider';
 import './globals.css'
 import ClientOnly from './components/ClientOnly';
 import getCurrentUser from './actions/getCurrentUser';
-import CreateNewHome from './admindashboard/page';
 
 export const metadata = {
   title: 'Hotel Gasht',
-  description: 'this is description',
+  description: 'rent your hotel in hotelgasht.online',
   image: 'https://res.cloudinary.com/dbm8ncouc/image/upload/v1710714622/u84dz94tw2njqtnoxgcv.jpg',
 }
 
-const font = Nunito({ 
-  subsets: ['latin'], 
+const font = Nunito({
+  subsets: ['latin'],
 });
 
 export default async function RootLayout({
@@ -40,7 +39,6 @@ export default async function RootLayout({
           <SearchModal />
           <RentModal />
           <Navbar currentUser={currentUser} />
-          {/* <CreateNewHome currentUser={currentUser} /> */}
         </ClientOnly>
         <div className="pb-20 pt-28">
           {children}

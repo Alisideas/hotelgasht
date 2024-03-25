@@ -5,6 +5,9 @@ import { SafeUser } from "@/app/types";
 import Heading from "../Heading";
 import HeartButton from "../HeartButton";
 import { FiShare } from "react-icons/fi";
+import { Carousel } from "react-responsive-carousel"; // Import Carousel
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import styles
+
 
 interface ListingHeadProps {
   title: string;
@@ -74,8 +77,6 @@ const ListingHead: React.FC<ListingHeadProps> = ({
             if (navigator.share) {
               navigator.share(shareData);
             } else {
-              // Fallback for browsers that do not support Web Share API
-              // You can implement your custom share functionality here
               alert("Sharing not supported on this device.");
             }
           }}
@@ -90,7 +91,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
       <div className="relative w-full grid grid-cols-2 gap-1 overflow-hidden">
         <img
           src={imageSrc[0]}
-          className="w-full h-[504px] object-cover rounded-md rounded-r-none cursor-pointer hover:opacity-80"
+          className="w-full h-[504px] object-cover rounded-md rounded-r-none cursor-pointer hover:opacity-80 hidden md:block"
           alt="Image 1"
           onClick={() => openImageModal(imageSrc[0])}
         />
@@ -99,13 +100,26 @@ const ListingHead: React.FC<ListingHeadProps> = ({
             <img
               key={index + 1}
               src={imageUrl}
-              className="w-full h-[250px] object-cover rounded-md rounded-l-none cursor-pointer hover:opacity-80"
+              className="w-full h-[250px] object-cover rounded-md rounded-l-none cursor-pointer hover:opacity-80 hidden md:block"
               alt={`Image ${index + 2}`}
               onClick={(event) => handleImageClick(imageUrl, event)}
             />
           ))}
         </div>
       </div>
+
+      {/* mobile view */}
+      <div className="block md:hidden w-full">
+          <Carousel autoPlay infiniteLoop showArrows showIndicators={false} showThumbs={false}>
+            {imageSrc.map((imageUrl, index) => (
+              <div key={index} className="w-full object-cover">
+                <img src={imageUrl} alt={`Gallery Image ${index + 1}`} className="w-full h-[250px] object-cover"/>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      
+      
 
       <div className="absolute top-5 right-5">
         <HeartButton listingId={id} currentUser={currentUser} />
