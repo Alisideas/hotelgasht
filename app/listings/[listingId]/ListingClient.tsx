@@ -184,10 +184,10 @@ const ListingClient: React.FC<ListingClientProps> = ({
               <h3 className="p-3 text-lg font-bold">House Rules</h3>
               <ul>
                 <li className="p-3">
-                  Check-in: 4:00 PM - 8:00 PM
+                  Check-in: 14:00 PM
                 </li >
                 <li className="p-3">
-                  Checkout before 10:00 AM
+                  Checkout before 12:00 PM
                 </li>
                 <li className="p-3">
                   {listing.guestCount} guests maximum
