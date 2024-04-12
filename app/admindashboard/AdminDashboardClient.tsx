@@ -2,21 +2,21 @@
 
 import { SafeListing, SafeUser } from "@/app/types";
 
-import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
-import ListingCard from "@/app/components/listings/ListingCard";
-import { useRouter } from "next/navigation";
 import useLoginModal from "../hooks/useLoginModal";
-import useRegisterModal from "../hooks/useRegisterModal";
 import useRentModal from "../hooks/useRentModal";
 import { useCallback, useState } from "react";
+import PropertiesClient from "../properties/PropertiesClient";
+import AllProperties from "../components/AllProperties";
 
 interface AdminDashboardCllientProps {
   currentUser?: SafeUser | null;
+  listings?: SafeListing[];
 }
 
 const AdminDashboardCllient: React.FC<AdminDashboardCllientProps> = ({
   currentUser,
+  listings,
 }) => {
 
   const loginModal = useLoginModal();
@@ -53,6 +53,11 @@ const AdminDashboardCllient: React.FC<AdminDashboardCllientProps> = ({
         >
           Create New Home
         </div>
+        <hr className="mt-10"/>
+        <div>
+        <AllProperties listings={listings || []}/>
+        </div>
+        
       </Container>
     </div>
   );
