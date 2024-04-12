@@ -31,7 +31,7 @@ export async function PUT(
   
     const dataToUpdate: IParams = {};
     if (title) dataToUpdate.title = title;
-    if (price) dataToUpdate.price = parseFloat(price);
+    if (price) dataToUpdate.price = parseFloat(price!.toString());
   
     const listing = await prisma.listing.update({
       where: {
