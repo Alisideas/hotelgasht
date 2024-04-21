@@ -10,12 +10,12 @@ declare global {
 
 const uploadPreset = "r2buldnk";
 
-interface ImageUploadProps {
+interface ImageUploadExteraProps {
   onChange: (values: string[]) => void;
   values?: string[]; // Make values optional
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
+const ImageUploadExtera: React.FC<ImageUploadExteraProps> = ({ onChange, values = [] }) => {
   const handleUpload = useCallback((result: any) => {
     // Ensure values is always an array before updating
     onChange(Array.isArray(values) ? [...values, result.info.secure_url] : [result.info.secure_url]);
@@ -47,7 +47,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
               transition
               border-dashed 
               border-2 
-              p-20 
+              p-10 
               border-neutral-300
               flex
               flex-col
@@ -58,7 +58,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
             "
           >
             <TbPhotoPlus
-              size={50}
+              size={20}
             />
             {Array.isArray(values) &&
             values.map((imageUrl, index) => (
@@ -67,8 +67,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
                   style={{ objectFit: 'cover' }} 
                   src={imageUrl} 
                   alt={`Image ${index + 1}`} 
-                  width={350}
-                  height={350}
+                  width={100}
+                  height={100}
                 />
                 {/* Add a remove button for each image */}
                 <button
@@ -84,7 +84,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
               </div>
             ))
           }
-            <div className="font-semibold text-lg">
+            <div className="font-semibold text-xs">
               Click to upload
             </div>
           </div>
@@ -94,4 +94,4 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, values = [] }) => {
   );
 }
 
-export default ImageUpload;
+export default ImageUploadExtera;
