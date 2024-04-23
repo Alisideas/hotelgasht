@@ -78,12 +78,11 @@ const RentModal = () => {
   const Map = useMemo(() => dynamic(() => import('../Map'), { 
     ssr: false 
   }), [location]);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]); // Manage selected options
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
 
   const setCustomValue = (id: string, value: any) => {
     if (id === 'option') {
-      // Handle multiple selections for 'option'
       const updatedOptions = selectedOptions.includes(value)
         ? selectedOptions.filter((option) => option !== value)
         : [...selectedOptions, value];
@@ -296,7 +295,7 @@ const RentModal = () => {
             <div key={item.label} className="col-span-1">
               <HomeOptionBox
                 onClick={(option) => setCustomValue('option', option)}
-                selected={selectedOptions.includes(item.label)} // Check if option is selected
+                selected={selectedOptions.includes(item.label)}
                 label={item.label}
                 icon={item.icon}
               />
