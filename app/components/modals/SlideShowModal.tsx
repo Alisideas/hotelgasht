@@ -32,6 +32,7 @@ const SlideShowModal: React.FC<SlideShowModalProps> = ({ images }) => {
       </div>
     ),
   };
+  
 
   const bodyContent = (
     <div>
