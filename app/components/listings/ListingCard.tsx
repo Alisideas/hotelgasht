@@ -167,7 +167,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         <div className="flex flex-row items-center gap-2 w-full">
 
           <div className="font-semibold text-lg">
-            {location?.region}, {location?.label}
+            {location?.label}
           </div>
           <div className="ml-auto"><Rating initialValue={0} />
           </div>
