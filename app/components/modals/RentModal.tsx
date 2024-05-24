@@ -59,6 +59,9 @@ const RentModal = () => {
       location: null,
       guestCount: 1,
       roomCount: 1,
+      
+      bedCount: 1,
+
       bathroomeCount: 1,
       imageSrc: '',
       price: 1,
@@ -69,6 +72,7 @@ const RentModal = () => {
 
   const location = watch('location');
   const category = watch('category');
+  const bedCount = watch('bedCount');
   const option = watch('option');
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
@@ -219,6 +223,13 @@ const RentModal = () => {
           value={roomCount}
           title="Rooms" 
           subtitle="How many rooms do you have?"
+        />
+        <hr />
+        <Counter 
+          onChange={(value) => setCustomValue('bedCount', value)}
+          value={bedCount}
+          title="Beds" 
+          subtitle="How many beds do you want?"
         />
         <hr />
         <Counter 

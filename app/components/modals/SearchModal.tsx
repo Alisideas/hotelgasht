@@ -33,6 +33,7 @@ const SearchModal = () => {
   const [location, setLocation] = useState<CountrySelectValue>();
   const [guestCount, setGuestCount] = useState(1);
   const [roomCount, setRoomCount] = useState(1);
+  const [bedCount, setBedCount] = useState(1);
   const [bathroomCount, setBathroomCount] = useState(1);
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
@@ -68,6 +69,7 @@ const SearchModal = () => {
       locationValue: location?.value,
       guestCount,
       roomCount,
+      bedCount,
       bathroomCount
     };
 
@@ -95,6 +97,7 @@ const SearchModal = () => {
     router, 
     guestCount, 
     roomCount,
+    bedCount,
     dateRange,
     onNext,
     bathroomCount,
@@ -168,6 +171,13 @@ const SearchModal = () => {
           title="Rooms" 
           subtitle="How many rooms do you need?"
         />        
+        <hr />
+        <Counter 
+          onChange={(value) => setBedCount(value)}
+          value={bedCount}
+          title="Beds" 
+          subtitle="How many beds do you need?"
+        />
         <hr />
         <Counter 
           onChange={(value) => {

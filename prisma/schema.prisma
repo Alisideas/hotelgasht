@@ -55,6 +55,7 @@ model Listing {
   option String[]
   roomCount Int
   bathroomeCount Int
+  bedCount Int?
   guestCount Int
   locationValue String
   userId String @db.ObjectId
