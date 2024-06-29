@@ -24,6 +24,11 @@ import FilterButton from '../FilterButton';
 
 export const categories = [
   {
+    label: 'Modern',
+    icon: MdOutlineVilla,
+    description: 'This property is modern!'
+  },
+  {
     label: 'Lux',
     icon: IoDiamond,
     description: 'This property is brand new and luxurious!'
@@ -33,11 +38,7 @@ export const categories = [
     icon: TbBeach,
     description: 'This property is close to the beach!',
   },
-  {
-    label: 'Modern',
-    icon: MdOutlineVilla,
-    description: 'This property is modern!'
-  },
+  
   {
     label: 'Pools',
     icon: TbPool,
