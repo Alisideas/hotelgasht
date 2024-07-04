@@ -23,7 +23,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
     let currentQuery = {};
     
     if (params) {
-      currentQuery = qs.parse(params.toString())
+      currentQuery = qs.parse(params.toString());
     }
 
     const updatedQuery: any = {
@@ -31,7 +31,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       category: label
     }
 
-    if (params?.get('category') === label) {
+    if (params?.get('category') === label || label === 'All') {
       delete updatedQuery.category;
     }
 
@@ -57,8 +57,8 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         hover:text-neutral-800
         transition
         cursor-pointer
-        ${selected ? 'border-b-neutral-800' : 'border-transparent'}
-        ${selected ? 'text-neutral-800' : 'text-neutral-500'}
+        ${selected || label.includes('All') ? 'border-b-neutral-800' : 'border-transparent'}
+        ${selected || label.includes('All') ? 'text-neutral-800' : 'text-neutral-500'}
       `}
     >
       <Icon size={26} />
@@ -66,7 +66,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         {label}
       </div>
     </div>
-   );
+  );
 }
  
 export default CategoryBox;
