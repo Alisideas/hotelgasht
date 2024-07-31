@@ -12,8 +12,8 @@ import "./globals.css";
 import ClientOnly from "./components/ClientOnly";
 import getCurrentUser from "./actions/getCurrentUser";
 import SlideShowModal from "./components/modals/SlideShowModal";
-import MyDocument from "./livechat";
-import LiveChat from "./livechat";
+// import MyDocument from "./livechat";
+// import LiveChat from "./livechat";
 import SocialMedias from "./components/SocialMedias";
 
 export const metadata = {
@@ -37,7 +37,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <ClientOnly>
+        {/* <ClientOnly>
           <ToasterProvider />
           <LoginModal />
           <RegisterModal />
@@ -49,7 +49,7 @@ export default async function RootLayout({
           <div className="hidden md:block lg:block xl:block 2xl:block fixed bottom-60 w-full">
             <SocialMedias />
           </div>
-        </ClientOnly>
+        </ClientOnly> */}
         <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
